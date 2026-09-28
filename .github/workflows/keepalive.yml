@@ -1,0 +1,26 @@
+name: Keepalive Ping
+on:
+  schedule:
+    - cron: '0 0 */3 * *' # Every 3 days at midnight UTC
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Health Endpoint
+        run: |
+          if [ -z "${{ secrets.KEEPALIVE_URL }}" ]; then
+            echo "KEEPALIVE_URL secret is not set. Skipping ping."
+            exit 0
+          fi
+          
+          echo "Pinging ${{ secrets.KEEPALIVE_URL }}..."
+          response=$(curl -s -w "%{http_code}" -o /dev/null "${{ secrets.KEEPALIVE_URL }}")
+          
+          if [ "$response" -eq 200 ]; then
+            echo "✅ Keepalive ping successful (Status 200)"
+          else
+            echo "❌ Keepalive ping failed with status $response"
+            exit 1
+          fi

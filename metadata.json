@@ -1,0 +1,8 @@
+{
+  "name": "Shree Ratna Kirana & Jewellers",
+  "description": "Daily Kirana & Trusted Jewellery Under One Roof. Mobile-first neighbourhood catalog with instant WhatsApp rate inquiries and admin panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
