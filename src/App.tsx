@@ -390,75 +390,55 @@ export default function App() {
           )
         ) : (
           // ================= PUBLIC CATALOG ROUTE =================
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-10 space-y-4 sm:space-y-8">
             
             {/* Store Hero Banner */}
-            <section className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-background border border-border-subtle p-6 sm:p-10 md:p-12 keyline-frame shadow-xs">
+            <section className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-background border border-border-subtle p-4 sm:p-8 md:p-12 keyline-frame shadow-xs">
               {/* Subtle ambient blur orbs */}
               <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-accent/5 filter blur-3xl pointer-events-none -mr-20 -mt-20" />
               <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl pointer-events-none -ml-20 -mb-20" />
 
-              <div className="relative z-10 max-w-2xl space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-surface border border-border-subtle text-[11px] font-semibold text-accent tracking-wider uppercase shadow-2xs">
+              <div className="relative z-10 max-w-2xl space-y-2.5 sm:space-y-4">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface border border-border-subtle text-[10px] sm:text-[11px] font-semibold text-accent tracking-wider uppercase shadow-2xs">
                   <span>🌾 Daily Kirana &amp; ✨ Fashion Jewellery</span>
-                  <span aria-hidden="true">·</span>
-                  <span className="text-gold">Under One Roof</span>
                 </div>
 
-                <h1 className="font-serif-display text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight leading-[1.15]">
+                <h1 className="font-serif-display text-2xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight leading-tight">
                   {config.tagline || BRAND_CONSTANTS.TAGLINE}
                 </h1>
 
-                <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
+                <p className="text-xs sm:text-base text-text-secondary leading-relaxed font-normal">
                   {config.description || BRAND_CONSTANTS.HERO_DESCRIPTION}
                 </p>
               </div>
             </section>
 
             {/* Sticky Catalog Controls (Search Bar & Category Filters) */}
-            <section className="sticky top-18 sm:top-20 z-20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-2 sm:py-3 bg-background/95 backdrop-blur-md border-y border-border-subtle shadow-[0_4px_20px_-4px_rgba(36,26,23,0.06)] transition-all">
-              <div className="max-w-7xl mx-auto space-y-2.5">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                  <div className="w-full sm:max-w-md">
+            <section className="sticky top-16 sm:top-20 z-20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-2 sm:py-3 bg-background/95 backdrop-blur-md border-y border-border-subtle shadow-xs transition-all">
+              <div className="max-w-7xl mx-auto space-y-2">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex-1 sm:max-w-md">
                     <SearchBar
                       value={searchTerm}
                       onChange={setSearchTerm}
-                      placeholder={loading ? 'Loading catalog items...' : `Search in Kirana & Jewellery (${products.length} items)...`}
+                      placeholder={loading ? 'Loading items...' : `Search in Kirana & Jewellery (${products.length})...`}
                     />
                   </div>
 
-                  {/* Sort by Dropdown & Item Counter */}
-                  <div className="flex items-center justify-between sm:justify-end gap-3">
-                    <div className="flex items-center gap-1.5 bg-surface border border-border-subtle rounded-lg px-2.5 py-1.5 shadow-2xs hover:border-border-hover transition-colors">
-                      <ArrowUpDown className="w-3.5 h-3.5 text-text-tertiary shrink-0" />
-                      <label htmlFor="catalog-sort" className="text-[11px] font-semibold text-text-tertiary uppercase tracking-wider shrink-0">
-                        Sort:
-                      </label>
-                      <select
-                        id="catalog-sort"
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value as any)}
-                        aria-label="Sort catalog products"
-                        className="bg-transparent text-xs font-semibold text-text-primary outline-none cursor-pointer pr-1"
-                      >
-                        <option value="newest">Newest First</option>
-                        <option value="price-asc">Price: Low to High</option>
-                        <option value="price-desc">Price: High to Low</option>
-                      </select>
-                    </div>
-
-                    <div className="text-xs text-text-tertiary hidden sm:block font-medium">
-                      {loading ? (
-                        <span className="inline-flex items-center gap-1.5 text-text-tertiary">
-                          <RefreshCw className="w-3.5 h-3.5 animate-spin text-accent" />
-                          Updating catalog...
-                        </span>
-                      ) : (
-                        <>
-                          Showing <span className="font-bold text-text-primary">{filteredProducts.length}</span> of {products.length} items
-                        </>
-                      )}
-                    </div>
+                  {/* Sort by Dropdown */}
+                  <div className="flex items-center gap-1.5 bg-surface border border-border-subtle rounded-xl px-2 sm:px-2.5 py-2 shadow-2xs hover:border-border-hover transition-colors shrink-0">
+                    <ArrowUpDown className="w-3.5 h-3.5 text-text-tertiary shrink-0" />
+                    <select
+                      id="catalog-sort"
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value as any)}
+                      aria-label="Sort catalog products"
+                      className="bg-transparent text-xs font-semibold text-text-primary outline-none cursor-pointer pr-1"
+                    >
+                      <option value="newest">Newest</option>
+                      <option value="price-asc">Price: Low</option>
+                      <option value="price-desc">Price: High</option>
+                    </select>
                   </div>
                 </div>
 

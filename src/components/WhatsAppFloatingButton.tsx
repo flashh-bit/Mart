@@ -30,18 +30,12 @@ export const WhatsAppFloatingButton: React.FC<WhatsAppFloatingButtonProps> = ({
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center gap-2.5 bg-whatsapp hover:bg-whatsapp-hover text-[#FAF8F5] p-3.5 sm:py-3.5 sm:px-4.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 active:scale-95 touch-target"
+        className="group flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5B] text-white p-3 sm:py-3.5 sm:px-4.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 active:scale-95 touch-target"
         aria-label="Chat with store owner on WhatsApp"
       >
         <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
-        <span className="text-xs sm:text-sm font-semibold tracking-wide pr-1 hidden xs:inline sm:inline">
+        <span className="text-xs sm:text-sm font-semibold tracking-wide pr-1 hidden sm:inline">
           Ask on WhatsApp
-        </span>
-
-        {/* Ambient indicator dot */}
-        <span className="relative flex h-2.5 w-2.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-surface opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-200"></span>
         </span>
       </a>
     </aside>

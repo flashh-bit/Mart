@@ -71,11 +71,10 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
       : products.length;
 
   return (
-    <div className="space-y-4">
-      
+    <div className="space-y-2.5">
       {/* 1. Main Department Tabs: Kirana vs Jewellery */}
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full sm:w-auto">
+      <div className="flex items-center justify-between gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2 w-full sm:w-auto">
           {/* Kirana Tab */}
           <button
             type="button"
@@ -83,16 +82,15 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               onSelectDepartment('Kirana');
               onSelectCategory('All');
             }}
-            className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg font-serif-display text-sm font-bold transition-all cursor-pointer touch-target ${
+            className={`flex items-center justify-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer touch-target ${
               activeDepartment === 'Kirana'
-                ? 'bg-accent text-[#FAF7F2] shadow-sm border border-accent ring-2 ring-[#7E1929]/20'
+                ? 'bg-accent text-[#FAF7F2] shadow-xs'
                 : 'bg-surface text-text-secondary hover:text-text-primary hover:bg-surface-subtle border border-border-subtle'
             }`}
           >
-            <span className="text-sm">🌾</span>
-            <span>Kirana</span>
+            <span>🌾 Kirana</span>
             <span
-              className={`text-xs px-2 py-0.5 rounded-full font-sans font-semibold ${
+              className={`text-[10px] sm:text-xs px-1.5 py-0.2 rounded-full font-sans font-semibold ${
                 activeDepartment === 'Kirana'
                   ? 'bg-surface/20 text-[#FAF7F2]'
                   : 'bg-surface-subtle text-text-secondary'
@@ -109,16 +107,15 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               onSelectDepartment('Jewellery');
               onSelectCategory('All');
             }}
-            className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg font-serif-display text-sm font-bold transition-all cursor-pointer touch-target ${
+            className={`flex items-center justify-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer touch-target ${
               activeDepartment === 'Jewellery'
-                ? 'bg-accent text-[#FAF7F2] shadow-sm border border-accent ring-2 ring-[#7E1929]/20'
+                ? 'bg-accent text-[#FAF7F2] shadow-xs'
                 : 'bg-surface text-text-secondary hover:text-text-primary hover:bg-surface-subtle border border-border-subtle'
             }`}
           >
-            <span className="text-sm">✨</span>
-            <span>Jewellery</span>
+            <span>✨ Jewellery</span>
             <span
-              className={`text-xs px-2 py-0.5 rounded-full font-sans font-semibold ${
+              className={`text-[10px] sm:text-xs px-1.5 py-0.2 rounded-full font-sans font-semibold ${
                 activeDepartment === 'Jewellery'
                   ? 'bg-surface/20 text-[#FAF7F2]'
                   : 'bg-surface-subtle text-text-secondary'
@@ -161,78 +158,76 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               onChange={(e) => onToggleInStockOnly(e.target.checked)}
               className="w-4 h-4 rounded text-accent border-border-subtle focus:ring-[#7E1929] accent-[#7E1929] cursor-pointer"
             />
-            <span>Show In-Stock Only</span>
+            <span>In-Stock Only</span>
           </label>
         </div>
       </div>
 
       {/* 2. Sub-category Chips Row */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-0.5 no-scrollbar scroll-smooth flex-1 -mx-4 px-4 sm:mx-0 sm:px-0">
-          {/* "All" Chip for the active department */}
-          <button
-            type="button"
-            onClick={() => onSelectCategory('All')}
-            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 cursor-pointer touch-target ${
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 pt-0.5 no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* "All" Chip for the active department */}
+        <button
+          type="button"
+          onClick={() => onSelectCategory('All')}
+          className={`inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-medium transition-all shrink-0 cursor-pointer touch-target ${
+            selectedCategory === 'All'
+              ? 'bg-[#241A17] text-[#FAF7F2] font-semibold shadow-xs'
+              : 'bg-surface text-text-secondary hover:text-text-primary hover:bg-surface-subtle border border-border-subtle'
+          }`}
+        >
+          <span>
+            {activeDepartment === 'Kirana'
+              ? 'All Kirana'
+              : activeDepartment === 'Jewellery'
+              ? 'All Jewellery'
+              : 'All'}
+          </span>
+          <span
+            className={`text-[10px] px-1 py-0.2 rounded-full ${
               selectedCategory === 'All'
-                ? 'bg-[#241A17] text-[#FAF7F2] shadow-xs'
-                : 'bg-surface text-text-secondary hover:text-text-primary hover:bg-surface-subtle border border-border-subtle'
+                ? 'bg-surface/20 text-[#FAF7F2]'
+                : 'bg-surface-subtle text-text-tertiary'
             }`}
           >
-            <span>
-              {activeDepartment === 'Kirana'
-                ? 'All Kirana Items'
-                : activeDepartment === 'Jewellery'
-                ? 'All Jewellery'
-                : 'All Categories'}
-            </span>
-            <span
-              className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                selectedCategory === 'All'
-                  ? 'bg-surface/20 text-[#FAF7F2]'
-                  : 'bg-surface-subtle text-text-tertiary'
+            {currentTabAllCount}
+          </span>
+        </button>
+
+        {/* Sub-category chips */}
+        {departmentCategories.map((cat) => {
+          const isSelected = selectedCategory === cat;
+          const count = getCategoryCount(cat);
+
+          return (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => onSelectCategory(cat)}
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-medium transition-all shrink-0 cursor-pointer touch-target ${
+                isSelected
+                  ? 'bg-accent text-[#FAF7F2] font-semibold shadow-xs'
+                  : 'bg-surface text-text-secondary hover:text-text-primary hover:bg-surface-subtle border border-border-subtle'
               }`}
             >
-              {currentTabAllCount}
-            </span>
-          </button>
-
-          {/* Sub-category chips */}
-          {departmentCategories.map((cat) => {
-            const isSelected = selectedCategory === cat;
-            const count = getCategoryCount(cat);
-
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => onSelectCategory(cat)}
-                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 cursor-pointer touch-target ${
+              <span>{cat}</span>
+              <span
+                className={`text-[10px] px-1 py-0.2 rounded-full ${
                   isSelected
-                    ? 'bg-accent text-[#FAF7F2] font-semibold shadow-xs'
-                    : 'bg-surface text-text-secondary hover:text-text-primary hover:bg-surface-subtle border border-border-subtle'
+                    ? 'bg-surface/20 text-[#FAF7F2]'
+                    : 'bg-surface-subtle text-text-tertiary'
                 }`}
               >
-                <span>{cat}</span>
-                <span
-                  className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                    isSelected
-                      ? 'bg-surface/20 text-[#FAF7F2]'
-                      : 'bg-surface-subtle text-text-tertiary'
-                  }`}
-                >
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+                {count}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Mobile in-stock toggle */}
       <div className="flex sm:hidden items-center justify-between pt-0.5 text-xs text-text-secondary">
         <span className="text-[11px] text-text-tertiary">
-          {activeDepartment === 'Kirana' ? '🌾 Grocery & Daily Essentials' : activeDepartment === 'Jewellery' ? '✨ Pure Silver & Gold Ornaments' : 'Store Catalog'}
+          {activeDepartment === 'Kirana' ? '🌾 Grocery & Daily Essentials' : activeDepartment === 'Jewellery' ? '✨ Fashion & Imitation Jewellery' : 'Store Catalog'}
         </span>
         <label className="inline-flex items-center gap-1.5 font-medium cursor-pointer">
           <input
@@ -241,7 +236,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
             onChange={(e) => onToggleInStockOnly(e.target.checked)}
             className="w-3.5 h-3.5 rounded text-accent border-border-subtle accent-[#7E1929] cursor-pointer"
           />
-          <span>In-Stock Only</span>
+          <span className="text-[11px]">In-Stock Only</span>
         </label>
       </div>
 

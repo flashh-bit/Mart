@@ -95,65 +95,55 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
 
       {/* Product Content Details */}
-      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3">
+      <div className="p-3 sm:p-5 flex flex-col flex-1 justify-between gap-2 sm:gap-3">
         <div>
           {/* Category Chip */}
-          <span className="text-[11px] uppercase tracking-wider font-semibold text-text-tertiary group-hover:text-accent transition-colors duration-200">
+          <span className="text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold text-text-tertiary group-hover:text-accent transition-colors duration-200">
             {product.category}
           </span>
 
           {/* Product Title */}
-          <h3 className="font-serif-display text-base sm:text-lg font-bold text-text-primary leading-snug mt-1 group-hover:text-accent transition-colors duration-200 line-clamp-2">
+          <h3 className="font-serif-display text-sm sm:text-lg font-bold text-text-primary leading-snug mt-0.5 sm:mt-1 group-hover:text-accent transition-colors duration-200 line-clamp-2">
             {product.name}
           </h3>
 
           {/* Short Description */}
-          <p className="text-xs sm:text-sm text-text-secondary line-clamp-2 mt-1.5 leading-relaxed font-normal">
+          <p className="text-[11px] sm:text-sm text-text-secondary line-clamp-2 mt-1 leading-relaxed font-normal">
             {product.description}
           </p>
         </div>
 
         {/* Price & Action Row */}
-        <div className="pt-3 border-t border-[#F4EFE6] flex items-center justify-between gap-2 mt-auto">
-          {/* Price Section: Large & Bold */}
+        <div className="pt-2 sm:pt-3 border-t border-border-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-auto">
+          {/* Price Section */}
           <div className="flex flex-col">
             {isPriceOnRequest ? (
-              <div className="flex flex-col">
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-[#FBF5E6] text-gold border border-[#E8D7A6] shadow-2xs">
-                  Price on request
+              <div className="flex items-center gap-1">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#FBF5E6] text-gold border border-[#E8D7A6] shadow-2xs">
+                  Ask Price
                 </span>
                 {product.unit && (
-                  <span className="text-[11px] text-text-tertiary font-medium mt-0.5">
+                  <span className="text-[10px] text-text-tertiary font-medium">
                     ({product.unit})
                   </span>
                 )}
               </div>
             ) : (
-              <>
-                <span className="text-[10px] uppercase font-semibold text-text-tertiary tracking-wider">
-                  Price
+              <div className="flex items-baseline gap-1.5 flex-wrap">
+                <span className="text-base sm:text-2xl font-black font-sans tracking-tight text-accent tabular-nums">
+                  {formatIndianRupees(product.price, currency)}
                 </span>
-                <div className="flex items-baseline gap-1.5 flex-wrap">
-                  <span className="text-xl sm:text-2xl font-black font-sans tracking-tight text-accent tabular-nums">
-                    {formatIndianRupees(product.price, currency)}
+                {product.unit && (
+                  <span className="text-[11px] sm:text-xs font-medium text-text-secondary">
+                    / {product.unit}
                   </span>
-                  {product.unit && (
-                    <span className="text-xs font-medium text-text-secondary">
-                      / {product.unit}
-                    </span>
-                  )}
-                  {hasDiscount && (
-                    <>
-                      <span className="text-xs text-text-tertiary line-through font-medium">
-                        {formatIndianRupees(product.originalPrice!, currency)}
-                      </span>
-                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-accent/10 text-accent border border-accent/20">
-                        {discountPercent}% OFF
-                      </span>
-                    </>
-                  )}
-                </div>
-              </>
+                )}
+                {hasDiscount && (
+                  <span className="text-[10px] sm:text-xs text-text-tertiary line-through font-medium">
+                    {formatIndianRupees(product.originalPrice!, currency)}
+                  </span>
+                )}
+              </div>
             )}
           </div>
 
@@ -165,15 +155,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
               title={isPriceOnRequest ? "Inquire rate on WhatsApp" : "Inquire / order on WhatsApp"}
-              className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-xl transition-all duration-200 touch-target cursor-pointer shrink-0 shadow-2xs hover:shadow-xs active:scale-95 ${
+              className={`w-full sm:w-auto inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg sm:rounded-xl transition-all duration-200 touch-target cursor-pointer shrink-0 shadow-2xs hover:shadow-xs active:scale-95 ${
                 isPriceOnRequest
                   ? 'text-accent bg-[#FDF2F4] hover:bg-[#FCE5E9] border border-[#F3CCD3]'
                   : 'text-[#1E8349] bg-[#E9F6ED] hover:bg-[#D5EFDD] border border-[#C6E7D0]'
               }`}
               aria-label={`Ask about ${product.name} on WhatsApp`}
             >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>{isPriceOnRequest ? 'Ask Rate' : 'WhatsApp'}</span>
+              <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+              <span className="truncate">{isPriceOnRequest ? 'Ask Price' : 'WhatsApp'}</span>
             </a>
           )}
         </div>
