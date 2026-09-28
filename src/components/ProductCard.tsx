@@ -64,22 +64,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
         {/* Badges on Image (Stock & Department) */}
-        <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
+        <div className="absolute top-2 left-2 right-2 sm:top-3 sm:left-3 sm:right-3 z-10 flex items-center justify-between pointer-events-none gap-1">
           {product.inStock ? (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold tracking-wide bg-surface/95 text-[#1E8349] border border-[#C6E7D0] shadow-2xs backdrop-blur-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-whatsapp mr-1.5"></span>
+            <span className="inline-flex items-center px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded text-[9px] sm:text-[11px] font-semibold tracking-wide bg-surface/95 text-[#1E8349] border border-[#C6E7D0] shadow-2xs backdrop-blur-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-whatsapp mr-1 sm:mr-1.5"></span>
               Available
             </span>
           ) : (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold tracking-wide bg-[#241A17]/90 text-[#FAF7F2] border border-[#443834] shadow-2xs backdrop-blur-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#968A84] mr-1.5"></span>
+            <span className="inline-flex items-center px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded text-[9px] sm:text-[11px] font-semibold tracking-wide bg-[#241A17]/90 text-[#FAF7F2] border border-[#443834] shadow-2xs backdrop-blur-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#968A84] mr-1 sm:mr-1.5"></span>
               Out of Stock
             </span>
           )}
 
           {/* Department indicator tag */}
           {product.department && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-background/90 text-accent border border-border-subtle backdrop-blur-xs">
+            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[8px] sm:text-[10px] font-bold uppercase tracking-wider bg-background/90 text-accent border border-border-subtle backdrop-blur-xs">
               {product.department === 'Kirana' ? '🌾 Kirana' : '✨ Jewellery'}
             </span>
           )}
