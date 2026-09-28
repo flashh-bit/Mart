@@ -10,8 +10,8 @@ interface AdminLoginProps {
 }
 
 export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onCancel }) => {
-  const [email, setEmail] = useState('theflashkrishna@gmail.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,12 +34,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onCancel
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleQuickFill = (targetEmail: string) => {
-    setEmail(targetEmail);
-    setPassword('admin123');
-    setError(null);
   };
 
   return (
@@ -130,29 +124,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onCancel
           </button>
         </form>
 
-        {/* Quick Fill Credentials Helper */}
-        <div className="pt-4 border-t border-border-subtle text-xs text-text-secondary space-y-2">
-          <p className="font-medium text-text-primary">Owner demo credentials:</p>
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => handleQuickFill('theflashkrishna@gmail.com')}
-              className="text-[11px] bg-background hover:bg-surface-subtle px-2.5 py-1.5 rounded-lg border border-border-subtle text-text-primary font-mono cursor-pointer transition-colors"
-            >
-              theflashkrishna@gmail.com
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickFill('admin@shop.com')}
-              className="text-[11px] bg-background hover:bg-surface-subtle px-2.5 py-1.5 rounded-lg border border-border-subtle text-text-primary font-mono cursor-pointer transition-colors"
-            >
-              admin@shop.com
-            </button>
-          </div>
-          <p className="text-[11px] text-text-tertiary">
-            Password: <code className="bg-background px-1.5 py-0.5 rounded border border-border-subtle">admin123</code>
-          </p>
-        </div>
 
         <div className="text-center pt-2">
           <button
